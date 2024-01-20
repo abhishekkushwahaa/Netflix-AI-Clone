@@ -1,8 +1,19 @@
-const Movie = () => {
-  console.log("Movie");
-  return (
-    <div>Movie</div>
-  )
-}
+import { useState, useEffect } from "react";
+import {
+  Box,
+  Typography,
+  CircularProgress,
+  useMediaQuery,
+} from "@mui/material";
+import { useSelector } from "react-redux";
 
-export default Movie 
+import { useGetPopularMoviesQuery } from "../../services/tmdb";
+
+const Movie = () => {
+  const { data } = useGetPopularMoviesQuery();
+  console.log(data);
+
+  return <div>Movie</div>;
+};
+
+export default Movie;
