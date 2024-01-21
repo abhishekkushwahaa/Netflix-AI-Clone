@@ -1,10 +1,10 @@
-import {CssBaseline} from "@mui/material";
-import { Switch, Route} from "react-router-dom";
+import { CssBaseline } from "@mui/material";
+import { Switch, Route } from "react-router-dom";
 
-import Actors from './Actors/Actors.jsx';
-import Movie from './Movie/Movie.jsx';
-import Movieinfo from './Movieinfo/Movieinfo.jsx';
-import Profile from './Profile/Profile.jsx';
+import Actors from "./Actors/Actors.jsx";
+import Movie from "./Movie/Movie.jsx";
+import Movieinfo from "./Movieinfo/Movieinfo.jsx";
+import Profile from "./Profile/Profile.jsx";
 import Nav from "./Navbar/Nav.jsx";
 
 import useStyles from "./Styles";
@@ -15,29 +15,29 @@ const App = () => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Nav/>
+      <Nav />
       <main className={classes.content}>
-      <div className={classes.toolbar}></div>
+        <div className={classes.toolbar}></div>
         <Switch>
           <Route exact path="/">
-            <Movie/>
-          </Route>  
+            <Movie />
+          </Route>
           <Route exact path="/movies">
-            <Movie/>
-          </Route>  
+            <Movie />
+          </Route>
           <Route exact path="/movies/:id">
-            <Movieinfo/>
-          </Route>  
+            <Movieinfo />
+          </Route>
           <Route exact path="/actors/:id">
-            <Actors/>
-          </Route>  
+            <Actors />
+          </Route>
           <Route exact path="/profile/:id">
-            <Profile/>
-          </Route>  
+            <Profile />
+          </Route>
         </Switch>
       </main>
     </div>
   );
-}
+};
 
 export default App;
