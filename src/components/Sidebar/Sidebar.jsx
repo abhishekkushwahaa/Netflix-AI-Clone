@@ -10,21 +10,13 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import useStyles from "./Styles";
-import { Home } from "@mui/icons-material";
-import HdOutlinedIcon from "@mui/icons-material/HdOutlined";
 import { useGetGenresQuery } from "../../services/tmdb";
+import genreIcons from "../../assets/genres/index";
 
 const categories = [
   { label: "Popular", value: "popular" },
   { label: "Top Rated", value: "top-rated" },
   { label: "Upcoming", value: "upcoming" },
-];
-
-const movieCategories = [
-  { label: "Comedy", value: "comedy" },
-  { label: "Horror", value: "horror" },
-  { label: "Action", value: "action" },
-  { label: "Animation", value: "animation" },
 ];
 
 const Sidebar = ({ setMobileOpen }) => {
@@ -47,7 +39,12 @@ const Sidebar = ({ setMobileOpen }) => {
           <Link key={value} className={Classes.links} to="/">
             <ListItem onClick={() => {}} button>
               <ListItemIcon>
-                <Home />
+                <img
+                  src={genreIcons[label.toLowerCase()]}
+                  alt={label}
+                  className={Classes.genreImages}
+                  height={25}
+                />
               </ListItemIcon>
               <ListItemText primary={label} />
             </ListItem>
@@ -63,10 +60,15 @@ const Sidebar = ({ setMobileOpen }) => {
           </Box>
         ) : (
           data.genres.map(({ name, id }) => (
-            <Link key={name} className={Classes.links} to="/">
+            <Link key={id} className={Classes.links} to="/">
               <ListItem onClick={() => {}} button>
                 <ListItemIcon>
-                  <HdOutlinedIcon />
+                  <img
+                    src={genreIcons[name.toLowerCase()]}
+                    alt={name}
+                    className={Classes.genreImages}
+                    height={25}
+                  />
                 </ListItemIcon>
                 <ListItemText primary={name} />
               </ListItem>
