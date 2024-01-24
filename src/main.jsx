@@ -6,12 +6,13 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Provider } from "react-redux";
 
 import App from "./components/App.jsx";
-import store from "./app/store.js";
+import store from "./app/store.jsx";
 
 const theme = createTheme({
   palette: {
     primary: {
       main: "#DF0712",
+      scondary: "white",
     },
   },
 });

@@ -12,6 +12,8 @@ import { Link } from "react-router-dom";
 import useStyles from "./Styles";
 import { useGetGenresQuery } from "../../services/tmdb";
 import genreIcons from "../../assets/genres/index";
+import { useDispatch, useSelector } from "react-redux";
+import { selectGenreOrCategory } from "../../features/Category";
 
 const categories = [
   { label: "Popular", value: "popular" },
@@ -20,15 +22,18 @@ const categories = [
 ];
 
 const Sidebar = ({ setMobileOpen }) => {
+  const { genreIdOrCategoryName } = useSelector((state) => state.Category);
   const Classes = useStyles();
   const { data, isFetching } = useGetGenresQuery();
-  // console.log(data);
+  const dispatch = useDispatch();
+  console.log(genreIdOrCategoryName);
   return (
     <>
       <Link to="/" className={Classes.imageLink}>
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
           alt="Netflix Logo"
+          href="/popular"
           className={Classes.image}
         />
       </Link>
@@ -37,7 +42,10 @@ const Sidebar = ({ setMobileOpen }) => {
         <ListSubheader>Categories</ListSubheader>
         {categories.map(({ label, value }) => (
           <Link key={value} className={Classes.links} to="/">
-            <ListItem onClick={() => {}} button>
+            <ListItem
+              onClick={() => dispatch(selectGenreOrCategory(value))}
+              button
+            >
               <ListItemIcon>
                 <img
                   src={genreIcons[label.toLowerCase()]}
@@ -61,7 +69,10 @@ const Sidebar = ({ setMobileOpen }) => {
         ) : (
           data.genres.map(({ name, id }) => (
             <Link key={id} className={Classes.links} to="/">
-              <ListItem onClick={() => {}} button>
+              <ListItem
+                onClick={() => dispatch(selectGenreOrCategory(id))}
+                button
+              >
                 <ListItemIcon>
                   <img
                     src={genreIcons[name.toLowerCase()]}
