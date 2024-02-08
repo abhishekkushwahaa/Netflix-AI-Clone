@@ -15,7 +15,7 @@ import useStyles from "./Styles";
 import Sidebar from "../Sidebar/Sidebar";
 import Search from "../Search/Search";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser, userSelector } from "../../features/Auth";
+import { setUser } from "../../features/Auth";
 
 const Nav = () => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
